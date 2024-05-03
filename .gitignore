@@ -1,0 +1,6 @@
+__pycache__/
+output.json
+.venv/
+*__pycache__/*
+*.gitkeep
+.env

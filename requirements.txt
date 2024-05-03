@@ -1,0 +1,10 @@
+deepgram-sdk==3.0.3
+Flask==3.0.0
+Flask-SocketIO==5.3.6
+python-dotenv==1.0.0
+PyAudio
+langchain_openai==0.1.6
+langchain_core==0.1.50
+langchain==0.1.17
+elevenlabs==1.2.1
+langchain-anthropic
