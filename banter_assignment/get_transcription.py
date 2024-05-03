@@ -1,6 +1,6 @@
 import logging
 from banter_assignment.get_audio import text_to_speech_stream
-from banter_assignment.memory_buffer import chat_with_memory
+from banter_assignment.rag_memory import chat_with_memory
 from deepgram import (
     DeepgramClient,
     DeepgramClientOptions,
