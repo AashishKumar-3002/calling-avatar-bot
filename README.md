@@ -1,16 +1,11 @@
-# Live Flask Starter
+# Calling Avatar Bot
+This sample demonstrates how to talk to your own personalized avatars on a phone call. This project is meant for banterai assignment.
 
- [![Discord](https://dcbadge.vercel.app/api/server/xWRaCDBtW4?style=flat)](https://discord.gg/xWRaCDBtW4)
-
-This sample demonstrates interacting with the Deepgram live streaming API using Flask, a micro web framework for Python.
-
-## What is Deepgram?
-
-[Deepgram](https://deepgram.com/) is a foundational AI company providing speech-to-text and language understanding capabilities to make data readable and actionable by human or machines.
-
-## Sign-up to Deepgram
+## Sign-up to Deepgram , elevenlabs and anthropic
 
 Before you start, it's essential to generate a Deepgram API key to use in this project. [Sign-up now for Deepgram and create an API key](https://console.deepgram.com/signup?jump=keys).
+
+You will also need to sign up for an account with [elevenlabs](https://elevenlabs.com/) and [anthropic](https://anthropic.com/).
 
 ## Quickstart
 
@@ -20,7 +15,7 @@ Follow these steps to get started with this starter application.
 
 #### Clone the repository
 
-Go to GitHub and [clone the repository](https://github.com/deepgram-starters/prerecorded-node-starter).
+Go to GitHub and [clone the repository](https://github.com/AashishKumar-3002/calling-avatar-bot.git).
 
 #### Install dependencies
 
@@ -32,15 +27,17 @@ pip install -r requirements.txt
 
 #### Edit the config file
 
-Copy the code from `sample.env` and create a new file called `.env`. Paste in the code and enter your API key you generated in the [Deepgram console](https://console.deepgram.com/).
+Copy the code from `sample.env` and create a new file called `.env`. Paste in the code and enter your API key you generated in the above steps
 
 ```js
 DEEPGRAM_API_KEY=%api_key%
+ELEVENLABS_API_KEY=%api_key%
+ANTHROPIC_API_KEY=%api_key%
 ```
 
 #### Run the application
 
-Once running, you can access the application in your browser at <http://127.0.0.1:5000>
+Once running, you can access the application in your browser at <http://127.0.0.1:5000> or <http://localhost:5000>.
 
 ```bash
 python app.py
@@ -54,15 +51,11 @@ If you have found a bug or if you have a feature request, please report them at 
 
 ## Getting Help
 
-We love to hear from you so if you have questions, comments or find a bug in the project, let us know! You can either:
-
-- [Open an issue in this repository](https://github.com/deepgram-starters/live-flask-starter/issues/new)
-- [Join the Deepgram Github Discussions Community](https://github.com/orgs/deepgram/discussions)
-- [Join the Deepgram Discord Community](https://discord.gg/xWRaCDBtW4)
+I would love to hear from you so if you have questions, comments or find a bug in the project, let us know! 
 
 ## Author
 
-[Deepgram](https://deepgram.com)
+[Aashish Kumar](https://www.linkedin.com/in/aashish-kumar-iiit/)
 
 ## License
 
