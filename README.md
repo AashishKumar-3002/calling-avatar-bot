@@ -47,7 +47,7 @@ python app.py
 
 ## Issue Reporting
 
-If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Security Policy](./SECURITY.md) details the procedure for contacting Deepgram.
+If you have found a bug or if you have a feature request, please report them at this repository issues section. 
 
 ## Getting Help
 
