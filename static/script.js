@@ -20,24 +20,10 @@ socket.on("transcription_update", function (data) {
   document.getElementById("captions").innerHTML = data.transcription;
 });
 
-// // Example client-side code to decode and play audio
-// socket.on('audio_update', function(data) {
-//   // Decode Base64 audio data
-//   var binaryString = window.atob(data.audio);
-//   var bytes = new Uint8Array(binaryString.length);
-//   for (var i = 0; i < binaryString.length; i++) {
-//       bytes[i] = binaryString.charCodeAt(i);
-//   }
-  
-//   // Create audio context and play the audio
-//   var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-//   audioContext.decodeAudioData(bytes.buffer, function(buffer) {
-//       var audioBuffer = audioContext.createBufferSource();
-//       audioBuffer.buffer = buffer;
-//       audioBuffer.connect(audioContext.destination);
-//       audioBuffer.start(0);
-//   });
-// });
+// Emit the 'start_steve_intro' event after 5 seconds of page load
+setTimeout(function() {
+  socket.emit("start_steve_intro");
+}, 5000);
 
 socket.on('audio_update', function(data) {
   // Add the 'glow' class to the audio-response div

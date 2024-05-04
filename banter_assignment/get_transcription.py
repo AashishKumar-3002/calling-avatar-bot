@@ -35,6 +35,21 @@ def start_microphone():
     microphone.start()
     return microphone
 
+def steve_intro(socketio):
+    try:
+        response = "Greetings, my dear friend! Emphasis on 'friend' because I don't just talk to any random person. Tell me what you want to discuss, but make it quick."
+
+        # Generate audio data from the transcription
+        audio_data_bytes = text_to_speech_stream(response)
+        # Convert audio data to base64 string
+        audio_data = base64.b64encode(audio_data_bytes).decode('utf-8')
+
+        # Emit the audio data
+        socketio.emit('audio_update', {'audio': audio_data})
+    
+    except Exception as e:
+        logging.error(f"Error: {e}")
+
 def start_transcription_loop(transcribing, transcription_event , socketio):
     try:
         all_transcriptions = ""

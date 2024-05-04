@@ -3,7 +3,7 @@ from flask_socketio import SocketIO
 from dotenv import load_dotenv
 import logging
 from threading import Event
-from banter_assignment.get_transcription import on_disconnect , start_transcription_loop
+from banter_assignment.get_transcription import on_disconnect , start_transcription_loop , steve_intro
 
 load_dotenv()
 
@@ -12,6 +12,7 @@ socketio = SocketIO(app)
 
 # Track transcription state
 transcribing = False
+not_started = True
 transcription_event = Event()
 
 @app.route('/talk_to_steve')
@@ -27,6 +28,15 @@ def home():
 @socketio.on('disconnect')
 def handle_disconnect():
     socketio.start_background_task(target=on_disconnect)
+
+@socketio.on('start_steve_intro')
+def start_steve_intro():
+    global not_started
+    if not not_started:
+        return  # If transcription has started, do nothing
+    socketio.start_background_task(target=steve_intro, socketio=socketio)
+    not_started = False
+
 
 @socketio.on('toggle_transcription')
 def toggle_transcription(data):
