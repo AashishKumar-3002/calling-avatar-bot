@@ -61,12 +61,12 @@ def start_transcription_loop(transcribing, transcription_event , socketio):
             microphone = start_microphone()
 
             def on_message(self, result, **kwargs):
-                nonlocal all_transcriptions
+                # nonlocal all_transcriptions
                 transcript = result.channel.alternatives[0].transcript
                 if len(transcript) > 0:
-                        socketio.emit('transcription_update', {'transcription': all_transcriptions.strip()})
+                        socketio.emit('transcription_update', {'transcription': transcribing.strip()})
 
-                        response = chat_with_memory(all_transcriptions.strip())
+                        response = chat_with_memory(transcribing.strip())
                         print(response)
 
                         # Generate audio data from the transcription
@@ -77,8 +77,8 @@ def start_transcription_loop(transcribing, transcription_event , socketio):
                         # Emit the audio data
                         socketio.emit('audio_update', {'audio': audio_data})    
 
-                        # Clear the transcription string after emitting
-                        all_transcriptions = ""
+                        # # Clear the transcription string after emitting
+                        # all_transcriptions = ""
 
             dg_connection.on(LiveTranscriptionEvents.Transcript, on_message)
 
