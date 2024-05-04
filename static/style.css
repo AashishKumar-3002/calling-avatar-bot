@@ -12,6 +12,7 @@ body {
   height: 90vh;
   background-color: #000;
   padding-top: 100px;
+  overflow: hidden;
 }
 
 .content {
@@ -144,12 +145,10 @@ body {
   }
 }
 
-#captions {
-  color: rgb(237, 237, 242);
-  font-size: 24px;
-  font-family: "Inter", sans-serif;
-  margin: 10px 0;
-  text-align: center;
+#call-end {
+  font-size:40px;
+  margin-top: 10vh;
+  color: red;
 }
 
 h1 {
@@ -159,6 +158,12 @@ h1 {
   letter-spacing: -0.02em;
   opacity: 1;
   text-align: center;
+}
+
+#talk-heading {
+  position: absolute;
+  top: 0;
+  font-family :'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 .button-container {
@@ -215,7 +220,7 @@ h1 {
 .click {
   position: absolute;
   height: 150px;
-  left: 20px;
+  left: 50px;
   top: -144px;
 }
 
@@ -248,4 +253,11 @@ h1 {
 
 .audio-response.glow {
   animation: glow 2s infinite;
+}
+
+.countdown {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
 }

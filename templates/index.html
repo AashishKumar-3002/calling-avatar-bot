@@ -13,12 +13,12 @@
       crossorigin="anonymous"
     ></script>
   </head>
+  <h2 id="talk-heading">Talking To Steve Jobs</h2>
   <body class="">
     <div class="content">
       <div class="audio-response" id="audio-response">
         <img src="../static/stevejobs.jpeg" alt="Speaker Image" id="speaker-image">
       </div>      
-      <img class="click" src="../static/click.png" />
       <div class="button-container">
         <input type="checkbox" id="record" class="mic-checkbox" />
         <label for="record" class="mic-button">
@@ -28,16 +28,23 @@
           </div>
           <div class="button-message">
             <span>&nbsp;</span>
-            <span> START </span>
+            </br>
+            <span>YOU</span>
           </div>
         </label>
+        <img class="click" src="../static/click.png" />
       </div>
     </div>
-    <h1>Captions by Deepgram</h1>
-    <div class="captions" id="captions">
-      <span>Talk with Your fav celebrity</span>
+    <div class="countdown" id="countdown">
+      <!-- {{start_countdown}}  -->
+      {% if start_countdown == 'true' %}
+        Ringing...
+      {% else %}  
+        Oops! Not available.
+      {% endif %} 
     </div>
-    
+    <div class="fa fa-phone" id="call-end" onclick="window.location.href='/'"> </div>
+    <audio id="myAudio" src="../static/ringtone.mp3"></audio>
     <script src="../static/script.js"></script>
   </body>
 </html>

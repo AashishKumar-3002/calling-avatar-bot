@@ -65,3 +65,49 @@ socket.on('audio_update', function(data) {
   });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const countdownElement = document.getElementById('countdown');
+  const startCountdownValue = countdownElement.textContent.trim();
+  console.log('startCountdownValue:', startCountdownValue);
+
+  // Function to start the timer
+  function startTimer() {
+      let seconds = 0;
+      const timerElement = document.getElementById('countdown');
+
+      // Update timer display every second
+      const timerInterval = setInterval(() => {
+          seconds++;
+          timerElement.textContent = formatTime(seconds);
+      }, 1000);
+
+      // Clear the interval when the page is closed or navigated away
+      window.addEventListener('beforeunload', function() {
+          clearInterval(timerInterval);
+      });
+  }
+
+  // Function to format time (hh:mm:ss)
+  function formatTime(seconds) {
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const remainingSeconds = seconds % 60;
+      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  }
+
+  // Start the timer if startCountdownValue is 'true'
+  if (startCountdownValue === 'Ringing...') {
+    setTimeout(startTimer, 5000); 
+  }
+});
+
+window.onload = function() {
+  var audio = document.getElementById("myAudio");
+  audio.play();
+
+  setTimeout(function() {
+    audio.pause();
+    audio.currentTime = 0;
+  }, 5000);  // Stop playing after 5 seconds
+};
+

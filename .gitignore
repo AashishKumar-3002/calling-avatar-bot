@@ -4,3 +4,5 @@ output.json
 *__pycache__/*
 *.gitkeep
 .env
+.vercel/
+templates/home2.html

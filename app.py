@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template , request
 from flask_socketio import SocketIO
 from dotenv import load_dotenv
 import logging
@@ -14,9 +14,15 @@ socketio = SocketIO(app)
 transcribing = False
 transcription_event = Event()
 
-@app.route('/')
+@app.route('/talk_to_steve')
 def index():
-    return render_template('index.html')
+    start_countdown = request.args.get('start_countdown', 'false')  # Change to start_countdown
+    print("start_countdown:", start_countdown)  # Check the value in console
+    return render_template('index.html', start_countdown=start_countdown)
+    
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 @socketio.on('disconnect')
 def handle_disconnect():
