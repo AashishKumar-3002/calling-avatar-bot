@@ -61,24 +61,10 @@ def start_transcription_loop(transcribing, transcription_event , socketio):
             microphone = start_microphone()
 
             def on_message(self, result, **kwargs):
-                # nonlocal all_transcriptions
+                nonlocal all_transcriptions
                 transcript = result.channel.alternatives[0].transcript
                 if len(transcript) > 0:
-                        socketio.emit('transcription_update', {'transcription': transcribing.strip()})
-
-                        response = chat_with_memory(transcribing.strip())
-                        print(response)
-
-                        # Generate audio data from the transcription
-                        audio_data_bytes = text_to_speech_stream(response)
-                        # Convert audio data to base64 string
-                        audio_data = base64.b64encode(audio_data_bytes).decode('utf-8')
-
-                        # Emit the audio data
-                        socketio.emit('audio_update', {'audio': audio_data})    
-
-                        # # Clear the transcription string after emitting
-                        # all_transcriptions = ""
+                    all_transcriptions += transcript + " "
 
             dg_connection.on(LiveTranscriptionEvents.Transcript, on_message)
 
@@ -92,24 +78,23 @@ def start_transcription_loop(transcribing, transcription_event , socketio):
             logging.info("Transcription loop finished.")
 
             # Emit the entire transcription
-            # if all_transcriptions.strip():  # Check if there's any content
-            #     socketio.emit('transcription_update', {'transcription': all_transcriptions.strip()})
+            if all_transcriptions.strip():  # Check if there's any content
+                socketio.emit('transcription_update', {'transcription': all_transcriptions.strip()})
 
-            #     response = chat_with_memory(all_transcriptions.strip())
-            #     print(response)
+                response = chat_with_memory(all_transcriptions.strip())
+                print(response)
 
-            #     # Generate audio data from the transcription
-            #     audio_data_bytes = text_to_speech_stream(response)
-            #     # Convert audio data to base64 string
-            #     audio_data = base64.b64encode(audio_data_bytes).decode('utf-8')
+                # Generate audio data from the transcription
+                audio_data_bytes = text_to_speech_stream(response)
+                # Convert audio data to base64 string
+                audio_data = base64.b64encode(audio_data_bytes).decode('utf-8')
 
-            #     # Emit the audio data
-            #     socketio.emit('audio_update', {'audio': audio_data})    
+                # Emit the audio data
+                socketio.emit('audio_update', {'audio': audio_data})    
 
-            #     # Clear the transcription string after emitting
-            #     all_transcriptions = ""
+                # Clear the transcription string after emitting
+                all_transcriptions = ""
 
-                
     except Exception as e:
         logging.error(f"Error: {e}")
 

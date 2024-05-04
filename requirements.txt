@@ -8,3 +8,4 @@ langchain_core==0.1.50
 langchain==0.1.17
 elevenlabs==1.2.1
 langchain-anthropic
+gunicorn
