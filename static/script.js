@@ -3,8 +3,10 @@ var socket = io.connect(
 );
 
 var isTranscribing = false;
+var isPlayingAudio = false; // Flag to indicate if audio is currently playing
 
-document.getElementById("record").addEventListener("change", function () {
+// Function to handle the change event for the recording toggle
+function handleRecordingToggle() {
   if (this.checked) {
     // Start transcription
     isTranscribing = true;
@@ -14,7 +16,10 @@ document.getElementById("record").addEventListener("change", function () {
     isTranscribing = false;
     socket.emit("toggle_transcription", { action: "stop" });
   }
-});
+}
+
+// Add event listener for the recording toggle
+document.getElementById("record").addEventListener("change", handleRecordingToggle);
 
 socket.on("transcription_update", function (data) {
   document.getElementById("captions").innerHTML = data.transcription;
@@ -28,6 +33,12 @@ setTimeout(function() {
 socket.on('audio_update', function(data) {
   // Add the 'glow' class to the audio-response div
   document.getElementById('audio-response').classList.add('glow');
+
+  // Set the flag to indicate that audio is playing
+  isPlayingAudio = true;
+
+  // Remove the event listener for the recording toggle
+  document.getElementById("record").removeEventListener("change", handleRecordingToggle);
 
   // Decode Base64 audio data
   var binaryString = window.atob(data.audio);
@@ -47,6 +58,11 @@ socket.on('audio_update', function(data) {
       // Remove the 'glow' class after the audio finishes playing
       audioBuffer.onended = function() {
           document.getElementById('audio-response').classList.remove('glow');
+          // Set the flag to indicate that audio playback has finished
+          isPlayingAudio = false;
+
+          // Re-add the event listener for the recording toggle
+          document.getElementById("record").addEventListener("change", handleRecordingToggle);
       };
   });
 });
@@ -96,4 +112,3 @@ window.onload = function() {
     audio.currentTime = 0;
   }, 5000);  // Stop playing after 5 seconds
 };
-

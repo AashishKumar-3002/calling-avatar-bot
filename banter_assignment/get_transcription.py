@@ -9,7 +9,7 @@ from deepgram import (
     Microphone,
 )
 import base64
-
+import time
 # Set up client configuration
 config = DeepgramClientOptions(
     verbose=logging.DEBUG,
@@ -66,6 +66,9 @@ def start_transcription_loop(transcribing, transcription_event , socketio):
                 if len(transcript) > 0:
                         socketio.emit('transcription_update', {'transcription': transcript.strip()})
 
+                        # Mute the microphone during playback
+                        microphone.finish()
+
                         response = chat_with_memory(transcript.strip())
                         print(response)
 
@@ -75,10 +78,13 @@ def start_transcription_loop(transcribing, transcription_event , socketio):
                         audio_data = base64.b64encode(audio_data_bytes).decode('utf-8')
 
                         # Emit the audio data
-                        socketio.emit('audio_update', {'audio': audio_data})    
+                        socketio.emit('audio_update', {'audio': audio_data})
 
-                        # # Clear the transcription string after emitting
-                        # all_transcriptions = ""
+                        # wait for the audio to finish
+                        time.sleep(5)
+
+                        # Unmute the microphone after playback
+                        microphone.start()    
 
             dg_connection.on(LiveTranscriptionEvents.Transcript, on_message)
 

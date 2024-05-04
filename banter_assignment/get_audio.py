@@ -6,7 +6,7 @@ from elevenlabs.client import ElevenLabs
 
 # print(ELEVENLABS_API_KEY)
 client = ElevenLabs(
-    api_key="79fce72f5b4c18697f2b814d722ed28b",
+    api_key="37779af975e5319f373df74547487863",
 )
 
 
