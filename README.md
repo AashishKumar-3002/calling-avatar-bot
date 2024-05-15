@@ -1,7 +1,8 @@
 # Calling Avatar Bot
 This sample demonstrates how to talk to your own personalized avatars on a phone call. This project is meant for banterai assignment. Refer the below video demo:
 
-[Download Video Demo](/static/Demo-Video-banterai.mp4)
+https://github.com/AashishKumar-3002/calling-avatar-bot/assets/110625812/dee0c34e-fd1a-4d0a-9240-c08386f5f521
+
 To watch the video demo, navigate to the `static` folder of your local copy of the repository and open the file named `Demo-Video-banterai.mp4`.
 
 ## Sign-up to Deepgram , elevenlabs and anthropic
